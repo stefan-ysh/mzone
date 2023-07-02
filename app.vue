@@ -1,6 +1,8 @@
 <template>
   <app-header></app-header>
-  <NuxtPage />
-  <ContentDoc class="prose" />
+  <!-- <NuxtPage /> -->
+  <div class="flex justify-center">
+    <ContentDoc class="prose" style="width: 100%;" />
+  </div>
   <app-footer></app-footer>
 </template>
