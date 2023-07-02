@@ -7,10 +7,17 @@ export default defineNuxtConfig({
       tailwindcss: {},
     },
   },
+  modules: ['@nuxt/content'],
+  content: {
+    highlight: {
+      preload: ['javascript', 'typescript', 'vue', 'vue-html'],
+    },
+  },
+
   components: [
     {
-      path: "~/components",
-      extensions: [".vue"],
+      path: '~/components',
+      extensions: ['.vue'],
     },
   ],
-});
+})
