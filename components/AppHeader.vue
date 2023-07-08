@@ -9,7 +9,7 @@
       </button>
     </div>
     <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+      <a class="btn btn-ghost normal-case text-xl">M-zone</a>
     </div>
     <div class="flex-none">
       <svg @click="changeTheme" style="width: 50px;cursor: pointer;" v-if="theme === 'light'" width="80" height="80"
@@ -67,6 +67,8 @@ const changeTheme = (event) => {
       "theme",
       _t
     );
+    html.classList.toggle("dark", theme.value === "dark");
+
     return;
   }
   // 如果支持,则执行更换主题的动画
@@ -85,6 +87,9 @@ const changeTheme = (event) => {
       "theme",
       _t
     );
+    // 当切换到dark 模式的时候 为html增加dark 类名， 当切换到light 模式的时候 移除dark 类名，增加light
+    html.classList.toggle("dark", theme.value === "dark");
+
   });
   transition.ready.then(() => {
     const clipPath = [
@@ -100,27 +105,14 @@ const changeTheme = (event) => {
         clipPath: c,
       },
       {
-        duration: 300,
+        duration: 500,
         easing: "ease-in",
         pseudoElement
       }
     );
   });
 };
-onMounted(() => {
-  const savedTheme = localStorage.getItem('theme')
-  if (savedTheme) {
-    document.querySelector('html').setAttribute('data-theme', savedTheme)
-    theme.value = savedTheme
-  } else {
-    theme.value = 'light'
-    localStorage.setItem(
-      "theme",
-      theme.value
-    );
-    document.querySelector('html').setAttribute('data-theme', theme.value)
-  }
-})
+
 </script>
 <style>
 ::view-transition-old(root),
